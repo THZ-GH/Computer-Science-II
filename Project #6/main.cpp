@@ -106,6 +106,13 @@ GameStock removeGames(GameStock &game)
 	return game;
 }
 
-GameStock updateGamePrice()
+GameStock updateGamePrice(GameStock &game)
 {
+	double newprice;
+	cout << "Please enter the new price of the game." << endl;
+	cin >> newprice;
+
+	game.setPrice(newprice);
+
+	return game;
 }
