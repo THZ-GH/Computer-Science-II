@@ -105,3 +105,7 @@ GameStock removeGames(GameStock &game)
 
 	return game;
 }
+
+GameStock updateGamePrice()
+{
+}
