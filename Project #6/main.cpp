@@ -4,10 +4,10 @@
 
 using namespace std;
 
-GameStock getGameInfo();
-GameStock addGames();
-GameStock removeGames();
-GameStock updateGamePrice();
+GameStock getGameInfo(GameStock &game);
+GameStock addGames(GameStock &game);
+GameStock removeGames(GameStock &game);
+GameStock updateGamePrice(GameStock &game);
 
 char menu();
 
@@ -17,7 +17,7 @@ int main()
 	GameStock game;
 
 	// Call getGameInfo so the user can enter the information about the game
-	getGameInfo();
+	getGameInfo(game);
 
 	char choice = 'X'; // you will need to initialize choice to something prior to while
 	while (choice != 'Q')
@@ -26,17 +26,17 @@ int main()
 		if (choice == 'A')
 		{
 			// call addGames
-			addGames();
+			addGames(game);
 		}
 		else if (choice == 'R')
 		{
 			// call removeGames
-			removeGames();
+			removeGames(game);
 		}
 		else if (choice == 'U')
 		{
 			// call updateGamePrice
-			updateGamePrice();
+			updateGamePrice(game);
 		}
 		else if (choice != 'Q')
 		{
@@ -45,6 +45,7 @@ int main()
 	}
 
 	// Call the display function
+	game.display();
 
 	return 0;
 }
@@ -57,29 +58,36 @@ char menu()
 	cout << "A - Add to Stock" << endl;
 	cout << "R - Remove from Stock" << endl;
 	cout << "U - Update price" << endl;
-	cout << "Q - Quit updaInboxting game information" << endl;
+	cout << "Q - Quit updating game information" << endl;
 	cout << "Enter your menu choice : ";
 	cin >> choice;
 	choice = toupper(choice);
 	return choice;
 }
 
-GameStock getGameInfo(string name, string type, double price, double version, int numberOfGames)
+GameStock getGameInfo(GameStock &game)
 {
+	string n, t;
+	double p, v;
+	int num;
 
 	cout << "Enter the following information about your game:" << endl;
 	cout << "Name: ";
-	cin >> name;
+	cin >> n;
 	cout << "Type: ";
-	cin >> type;
+	cin >> t;
 	cout << "Price: ";
-	cin >> price;
+	cin >> p;
 	cout << "Version: ";
-	cin >> version;
+	cin >> v;
 	cout << "Number in Stock: ";
-	cin >> numberOfGames;
+	cin >> num;
 
-	GameStock game(name, type, price, version, numberOfGames);
+	game.setName(n);
+	game.setType(t);
+	game.setPrice(p);
+	game.setVersion(v);
+	game.setNumber(num);
 
 	return game;
 }
